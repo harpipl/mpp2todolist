@@ -27,6 +27,7 @@ public class Task {
     private String priorityColor = "15732480";
     private String priorityWebColor = "#000FF0";
     private String subtaskDone;
+    private Duration duration;
 
     private List<Person> personList = new ArrayList<Person>();
     private List<Task> taskList = new ArrayList<Task>();
@@ -237,5 +238,20 @@ public class Task {
     @XmlAttribute(name = "LASTMODSTRING")
     public String getLastModString() {
         return DateHelper.toString(lastModDate, DateHelper.DATE_WITH_TIME_FORMAT_STR);
+    }
+
+    @XmlTransient
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    @XmlAttribute(name = "TIMEESTIMATE")
+    public String getTimeEstimate() {
+        return (duration == null) ? "0.00000000" : String.valueOf(duration.getDuration());
+    }
+
+    @XmlAttribute(name = "TIMEESTUNITS")
+    public String getTimeEstimateUnits() {
+        return (duration == null) ? TimeUnit.HOURS.getSymbol() : String.valueOf(duration.getUnits().getSymbol());
     }
 }

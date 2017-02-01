@@ -1,9 +1,11 @@
 package pl.harpi.mpp2todolist.main;
 
 import net.sf.mpxj.*;
+import net.sf.mpxj.Duration;
+import net.sf.mpxj.Task;
 import net.sf.mpxj.mpp.MPPReader;
-import pl.harpi.mpp2todolist.model.Person;
-import pl.harpi.mpp2todolist.model.TodoList;
+import pl.harpi.mpp2todolist.model.*;
+import pl.harpi.mpp2todolist.model.TimeUnit;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -17,6 +19,9 @@ public class Run {
         t.setStartDate(task.getStart());
         t.setDueDate(task.getFinish());
         t.setCreationDate(task.getCreateDate());
+        t.setDuration(new pl.harpi.mpp2todolist.model.Duration(task.getDuration().getDuration(), TimeUnit.fromMpp(task.getDuration().getUnits())));
+
+        Duration duration = task.getDuration();
 
         for (ResourceAssignment ra : task.getResourceAssignments()) {
             if (ra.getResource() != null && ra.getResource().getName() != null) {

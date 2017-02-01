@@ -6,11 +6,13 @@ import net.sf.mpxj.Task;
 import net.sf.mpxj.mpp.MPPReader;
 import pl.harpi.mpp2todolist.model.*;
 import pl.harpi.mpp2todolist.model.TimeUnit;
+import pl.harpi.mpp2todolist.utils.ConvertHelper;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 public class Run {
@@ -20,8 +22,7 @@ public class Run {
         t.setDueDate(task.getFinish());
         t.setCreationDate(task.getCreateDate());
         t.setDuration(new pl.harpi.mpp2todolist.model.Duration(task.getDuration().getDuration(), TimeUnit.fromMpp(task.getDuration().getUnits())));
-
-        Duration duration = task.getDuration();
+        t.setPriority(ConvertHelper.fromPriority(task.getPriority().getValue()));
 
         for (ResourceAssignment ra : task.getResourceAssignments()) {
             if (ra.getResource() != null && ra.getResource().getName() != null) {

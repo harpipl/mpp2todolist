@@ -15,12 +15,13 @@ public class Task {
     private Integer refId = 0;
     private String commentsType = "PLAIN_TEXT";
     private String createdBy;
-    private String priority = "5";
+    private String priority;
     private String risk = "0";
     private String percentDone = "0";
     private Date startDate;
     private Date dueDate;
     private Date creationDate;
+    private Date finishDate;
     private Date lastModDate;
     private String textColor = "0";
     private String textWebColor = "#000000";
@@ -219,6 +220,25 @@ public class Task {
     @XmlAttribute(name = "DUEDATESTRING")
     public String getDueDateAsString() {
         return DateHelper.toString(dueDate, DateHelper.DATE_WITH_TIME_FORMAT_STR);
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    @XmlTransient
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
+    }
+
+    @XmlAttribute(name = "DONEDATE")
+    public String getFinishDateAsNum() {
+        return DateHelper.toNum(finishDate);
+    }
+
+    @XmlAttribute(name = "DONEDATESTRING")
+    public String getFinishDateAsString() {
+        return DateHelper.toString(finishDate, DateHelper.DATE_WITH_TIME_FORMAT_STR);
     }
 
     public Date getLastModDate() {

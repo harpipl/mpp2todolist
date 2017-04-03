@@ -24,6 +24,15 @@ public class Run {
         t.setDuration(new pl.harpi.mpp2todolist.model.Duration(task.getDuration().getDuration(), TimeUnit.fromMpp(task.getDuration().getUnits())));
         t.setPriority(ConvertHelper.fromPriority(task.getPriority().getValue()));
 
+        if (task.getPercentageComplete() != null) {
+            int value = task.getPercentageComplete().intValue();
+
+            t.setPercentDone("" + value);
+            if (value == 100) {
+                t.setDoneDate(t.getDueDate());
+            }
+        }
+
         for (ResourceAssignment ra : task.getResourceAssignments()) {
             if (ra.getResource() != null && ra.getResource().getName() != null) {
                 t.getPersonList().add(new Person(ra.getResource().getName()));

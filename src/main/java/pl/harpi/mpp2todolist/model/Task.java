@@ -18,11 +18,13 @@ public class Task {
     private String priority;
     private String risk = "0";
     private String percentDone = "0";
+    private String calcPercentDone = "0";
     private Date startDate;
     private Date dueDate;
     private Date creationDate;
     private Date finishDate;
     private Date lastModDate;
+    private Date doneDate;
     private String textColor = "0";
     private String textWebColor = "#000000";
     private String priorityColor = "15732480";
@@ -101,6 +103,15 @@ public class Task {
         this.risk = risk;
     }
 
+    public String getCalcPercentDone() {
+        return calcPercentDone;
+    }
+
+    @XmlAttribute(name = "CALCPERCENTDONE")
+    public void setCalcPercentDone(String calcPercentDone) {
+        this.calcPercentDone = calcPercentDone;
+    }
+
     public String getPercentDone() {
         return percentDone;
     }
@@ -108,6 +119,25 @@ public class Task {
     @XmlAttribute(name = "PERCENTDONE")
     public void setPercentDone(String percentDone) {
         this.percentDone = percentDone;
+    }
+
+    public Date getDoneDate() {
+        return doneDate;
+    }
+
+    @XmlTransient
+    public void setDoneDate(Date doneDate) {
+        this.doneDate = doneDate;
+    }
+
+    @XmlAttribute(name = "DONEDATE")
+    public String getDoneDateAsNum() {
+        return DateHelper.toNum(doneDate);
+    }
+
+    @XmlAttribute(name = "DONEDATESTRING")
+    public String getDoneDateAsString() {
+        return DateHelper.toString(doneDate, DateHelper.DATE_WITH_TIME_FORMAT_STR);
     }
 
     public Date getStartDate() {

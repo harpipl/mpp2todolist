@@ -39,6 +39,16 @@ public class Run {
             }
         }
 
+        for (CategoryType ct : CategoryType.values()) {
+            if (task.getName().contains("[" + ct.name() + "]")) {
+                t.getCategoryList().add(new Category(ct.getDescription()));
+            }
+        }
+
+        if (task.getName().contains("Wolne") || task.getName().contains("Urlop")) {
+            t.getCategoryList().add(new Category(CategoryType.BIU.getDescription()));
+        }
+
         return t;
     }
 
@@ -78,6 +88,10 @@ public class Run {
             if (resource.getName() != null) {
                 todoList.getPersonList().add(new Person(resource.getName()));
             }
+        }
+
+        for (CategoryType ct : CategoryType.values()) {
+            todoList.getCategoryList().add(new Category(ct.getDescription()));
         }
 
         for (Task task : projectFile.getAllTasks()) {

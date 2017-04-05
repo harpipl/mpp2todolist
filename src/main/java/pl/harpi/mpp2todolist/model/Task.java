@@ -33,6 +33,7 @@ public class Task {
     private Duration duration;
 
     private List<Person> personList = new ArrayList<Person>();
+    private List<Category> categoryList = new ArrayList<>();
     private List<Task> taskList = new ArrayList<Task>();
 
     public Task(Integer id, String title) {
@@ -226,6 +227,11 @@ public class Task {
     @XmlElement(name = "PERSON")
     public List<Person> getPersonList() {
         return personList;
+    }
+
+    @XmlElement(name = "CATEGORY")
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
     @XmlElement(name = "TASK")

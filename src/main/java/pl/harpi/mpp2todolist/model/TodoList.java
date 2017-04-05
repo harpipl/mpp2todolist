@@ -20,6 +20,7 @@ public class TodoList {
     private String appVer = "7.1.0.5";
 
     private List<Person> personList = new ArrayList<Person>();
+    private List<Category> categoryList = new ArrayList<>();
     private List<Task> taskList = new ArrayList<Task>();
 
     public String getProjectName() {
@@ -64,6 +65,9 @@ public class TodoList {
 
     @XmlElement(name = "PERSON")
     public List<Person> getPersonList() { return personList; }
+
+    @XmlElement(name = "CATEGORY")
+    public List<Category> getCategoryList() { return categoryList; }
 
     @XmlElement(name = "TASK")
     public List<Task> getTaskList() {

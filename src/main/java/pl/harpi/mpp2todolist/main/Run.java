@@ -21,7 +21,8 @@ public class Run {
         t.setStartDate(task.getStart());
         t.setDueDate(task.getFinish());
         t.setCreationDate(task.getCreateDate());
-        t.setDuration(new pl.harpi.mpp2todolist.model.Duration(task.getDuration().getDuration(), TimeUnit.fromMpp(task.getDuration().getUnits())));
+
+        t.setDuration(new pl.harpi.mpp2todolist.model.Duration(task.getWork().getDuration(), TimeUnit.fromMpp(task.getWork().getUnits())));
         t.setPriority(ConvertHelper.fromPriority(task.getPriority().getValue()));
 
         if (task.getPercentageComplete() != null) {
